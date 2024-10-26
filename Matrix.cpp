@@ -34,7 +34,7 @@ Matrix::~Matrix()
    delete[] matrix;
 }
 
-Matrix Matrix::operator+(const Matrix& other_)
+Matrix Matrix::operator+(const Matrix& other_) const
 {
    if (row != other_.row || column != other_.column)
       throw 2;
@@ -48,7 +48,7 @@ Matrix Matrix::operator+(const Matrix& other_)
 
 }
 
-Matrix Matrix::operator*(const Matrix& other_)
+Matrix Matrix::operator*(const Matrix& other_) const
 {
    if (row != other_.column || column != other_.row)
       throw 3;
@@ -57,13 +57,24 @@ Matrix Matrix::operator*(const Matrix& other_)
 
    for (int i = 0; i < result.row; i++)
       for (int j = 0; j < result.column; j++)
-         for (int k = 0; k < result.row; k++)
+         for (int k = 0; k < column; k++)
             result[i][j] += matrix[i][k] * other_[k][j];
 
    return result;
 }
 
-Matrix Matrix::operator=(const Matrix& other_)
+Matrix Matrix::operator*(const double& number_) const
+{
+   Matrix temp(*this);
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < column; j++)
+         temp[i][j] = number_ * temp[i][j];
+
+   return temp;
+}
+
+Matrix& Matrix::operator=(const Matrix& other_)
 {
    if (row != other_.row || column != other_.column)
    {
@@ -82,12 +93,22 @@ Matrix Matrix::operator=(const Matrix& other_)
    return *this;
 }
 
-double* Matrix::operator[](int index) const
+bool Matrix::operator==(const Matrix& other_) const
+{
+   return ((row == other_.row) && (column == other_.column));
+}
+
+bool Matrix::operator!=(const Matrix& other_) const
+{
+   return ((row != other_.row) && (column != other_.column));
+}
+
+double* Matrix::operator[](const int index) const
 {
    return matrix[index];
 }
 
-double* Matrix::operator[](int index)
+double* Matrix::operator[](const int index)
 {
    return matrix[index];
 }
@@ -99,31 +120,33 @@ void Matrix::Set_Element(int row_, int column_, double value_)
    matrix[row_][column_] = value_;
 }
 
-double Matrix::Get_Element(int row_, int column_)
+double Matrix::Get_Element(int row_, int column_) const
 {
    if ((row_ < 0 || row_ >= row) || (column_ < 0 || column_ >= column))
       throw 1;
    return matrix[row_][column_];
 }
 
-int Matrix::Get_Row()
+int Matrix::Get_Row() const
 {
    return row;
 }
 
-int Matrix::Get_Column()
+int Matrix::Get_Column() const
 {
    return column;
 }
 
-void Matrix::Input_from_console()
+Matrix& Matrix::Input_from_Console()
 {
    for (int i = 0; i < row; i++)
       for (int j = 0; j < column; j++)
-         if (!scanf_s("%lf", &matrix[i][j])) return;
+         if (!scanf_s("%lf", &matrix[i][j])) throw 4;
+
+   return *this;
 }
 
-void Matrix::Print()
+Matrix& Matrix::Print()
 {
    for (int i = 0; i < row; i++)
    {
@@ -131,9 +154,12 @@ void Matrix::Print()
          printf("%lf ", matrix[i][j]);
       printf("\n");
    }
+   std::cout << '\n';
+
+   return *this;
 }
 
-void Matrix::Transposition()
+Matrix& Matrix::Transposition()
 {
    Matrix temp(*this);
    
@@ -148,4 +174,5 @@ void Matrix::Transposition()
       for (int j = 0; j < column; j++)
          matrix[i][j] = temp[j][i];
 
+   return *this;
 }

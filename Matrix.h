@@ -4,6 +4,7 @@
 
 class Matrix
 {
+protected:
    int row;
    int column;
 
@@ -15,13 +16,19 @@ public:
 
    Matrix(const Matrix& other_);
 
-   ~Matrix();
+   virtual ~Matrix();
 
-   Matrix operator+(const Matrix& other_);
+   Matrix operator+(const Matrix& other_) const;
 
-   Matrix operator*(const Matrix& other_);
+   Matrix operator*(const Matrix& other_) const;
 
-   Matrix operator=(const Matrix& other_);
+   Matrix operator*(const double& number_) const;
+
+   Matrix& operator=(const Matrix& other_);
+
+   bool operator==(const Matrix& other_) const;
+
+   bool operator!=(const Matrix& other_) const;
 
    double* operator[](int index) const;
 
@@ -29,18 +36,19 @@ public:
 
    void Set_Element(int row_, int column_, double value_);
    
+   double Get_Element(int row_, int column_) const;
 
-   double Get_Element(int row_, int column_);
+   int Get_Column() const;
 
-   int Get_Column();
+   int Get_Row() const;
 
-   int Get_Row();
+   Matrix& Input_from_Console();
 
-   void Input_from_console();
+   Matrix& Print();
 
-   void Print();
+   Matrix& Transposition();
 
-   void Transposition();
+
 
 };
 

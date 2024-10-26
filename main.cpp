@@ -2,7 +2,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <math.h>
-#include "Matrix.h"
+#include "Square_Matrix.h"
 using namespace std;
 
 double Min(Matrix matrix_)
@@ -39,29 +39,11 @@ int main()
    //a.Transposition();
    //a.Print();
 
-   Matrix A, B, C;
+   Square_Matrix A, B, C, D;
    //A.Input_from_console(); B.Input_from_console(); C.Input_from_console();
-
-   try
-   {
-      A.Set_Element(100, 100, 100);
-      C = A + B;
-
-      C.Print();
-   }
-   catch (int error)
-   {
-      switch (error)
-      {
-      case 1:
-         printf("Outside the array\n");
-         break;
-      case 2:
-         printf("Mismatch of dimensions\n");
-         break;
-      }
-   }
-
+   A.Input_from_Console().Print().operator+(B.Input_from_Console().Print()).Print();
+   C.Input_from_Console().Print().operator*(D.Input_from_Console().Print()).Print();
+   
    C.Transposition();
    C.Print();
    cout << "end" << endl;
