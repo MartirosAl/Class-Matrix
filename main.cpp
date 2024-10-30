@@ -39,13 +39,11 @@ int main()
    //a.Transposition();
    //a.Print();
 
-   Square_Matrix A, B, C, D;
+   Square_Matrix A(3), B, C, D;
    //A.Input_from_console(); B.Input_from_console(); C.Input_from_console();
-   A.Input_from_Console().Print().operator+(B.Input_from_Console().Print()).Print();
-   C.Input_from_Console().Print().operator*(D.Input_from_Console().Print()).Print();
+   A.Input_from_Console().Print();
    
-   C.Transposition();
-   C.Print();
+   cout << A.Minor_Matrix(0, 0) << endl;
    cout << "end" << endl;
    return 0;
 }

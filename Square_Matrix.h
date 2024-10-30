@@ -11,7 +11,7 @@ public:
 
    double Determinant_Matrix();
 
-   double Minor_Matrix();
+   double Minor_Matrix(int i, int j);
 
    double Algebraic_Complement_Matrix();
 
