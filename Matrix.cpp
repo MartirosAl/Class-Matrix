@@ -48,6 +48,43 @@ Matrix Matrix::operator+(const Matrix& other_) const
 
 }
 
+Matrix& Matrix::operator+=(const Matrix& other_)
+{
+   if (row != other_.row || column != other_.column)
+      throw 2;
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < column; j++)
+         matrix[i][j] += other_[i][j];
+
+   return *this;
+}
+
+Matrix Matrix::operator-(const Matrix& other_) const
+{
+   if (row != other_.row || column != other_.column)
+      throw 2;
+
+   Matrix result(row, column);
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < column; j++)
+         result[i][j] = matrix[i][j] - other_[i][j];
+
+   return result;
+}
+
+Matrix& Matrix::operator-=(const Matrix& other_)
+{
+   if (row != other_.row || column != other_.column)
+      throw 2;
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < column; j++)
+         matrix[i][j] -= other_[i][j];
+
+   return *this;
+}
+
 Matrix Matrix::operator*(const Matrix& other_) const
 {
    if (row != other_.column || column != other_.row)
@@ -63,6 +100,23 @@ Matrix Matrix::operator*(const Matrix& other_) const
    return result;
 }
 
+Matrix& Matrix::operator*=(const Matrix& other_)
+{
+   if (row != other_.row || column != other_.column)
+      throw 3;
+
+   Matrix result(row, other_.column);
+
+   for (int i = 0; i < result.row; i++)
+      for (int j = 0; j < result.column; j++)
+         for (int k = 0; k < column; k++)
+            result[i][j] += matrix[i][k] * other_[k][j];
+
+   (*this) = result;
+
+   return *this;
+}
+
 Matrix Matrix::operator*(const double& number_) const
 {
    Matrix temp(*this);
@@ -72,6 +126,15 @@ Matrix Matrix::operator*(const double& number_) const
          temp[i][j] = number_ * temp[i][j];
 
    return temp;
+}
+
+Matrix& Matrix::operator*=(const double& number_)
+{
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < column; j++)
+         matrix[i][j] = number_ * matrix[i][j];
+
+   return *this;
 }
 
 Matrix& Matrix::operator=(const Matrix& other_)

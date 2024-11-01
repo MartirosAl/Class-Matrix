@@ -3,7 +3,8 @@
 #include <Windows.h>
 #include <math.h>
 #include "Square_Matrix.h"
-using namespace std;
+#include "Vector.h"
+using namespace std; 
 
 double Min(Matrix matrix_)
 {
@@ -16,6 +17,37 @@ double Min(Matrix matrix_)
          if (min > matrix_[i][j]) min = matrix_[i][j];
 
    return min;
+}
+
+Vector Max_from_Diagonals(Square_Matrix& matrix_)
+{
+   int size = matrix_.Get_Row() * 2 - 1;
+   Vector array(nullptr, (size_t)size);
+
+   int index = 0;
+
+   for (int i = matrix_.Get_Row() - 1; i >= 0; i--)
+   {
+      double diagonal1 = 0;
+      double diagonal2 = 0;
+      int temp = i;
+      
+      for (int j = 0; j < matrix_.Get_Row() - i; j++)
+      {
+         if (diagonal1 < matrix_[temp][j]) diagonal1 = matrix_[temp][j];
+         if (diagonal2 < matrix_[j][temp]) diagonal2 = matrix_[j][temp];
+
+         temp++;
+      }
+      
+      array[index] = diagonal1;
+      if (i != 0)
+         array[size - 1 - index] = diagonal2;
+      index++;
+   }
+
+
+   return array;
 }
 
 int main()
@@ -38,12 +70,15 @@ int main()
    //a.Print();
    //a.Transposition();
    //a.Print();
+   int N = 3;
+   Square_Matrix A(4), B, C, D;
+   A.Input_from_Console().Print();// B.Input_from_Console().Print(); // C.Input_from_console();
 
-   Square_Matrix A(3), B, C, D;
-   //A.Input_from_console(); B.Input_from_console(); C.Input_from_console();
-   A.Input_from_Console().Print();
-   
-   cout << A.Minor_Matrix(0, 0) << endl;
+   Vector a;
+
+   a = Max_from_Diagonals(A);
+
+   a.Print_Vectors();
    cout << "end" << endl;
    return 0;
 }

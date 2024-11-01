@@ -4,10 +4,168 @@ Square_Matrix::Square_Matrix(int order_) : Matrix(order_, order_) { ; }
 
 Square_Matrix::Square_Matrix(const Square_Matrix& other_) : Matrix(other_) { ; }
 
-Matrix& Square_Matrix::Inverse_Matrix()
+Square_Matrix Square_Matrix::operator+(const Square_Matrix& other_) const
 {
+   if (row != other_.row)
+      throw 2;
+
+   Square_Matrix result(row);
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         result[i][j] = matrix[i][j] + other_[i][j];
+
+   return result;
+}
+
+Square_Matrix& Square_Matrix::operator+=(const Square_Matrix& other_)
+{
+   if (row != other_.row)
+      throw 2;
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         matrix[i][j] += other_[i][j];
 
    return *this;
+}
+
+Square_Matrix Square_Matrix::operator-(const Square_Matrix& other_) const
+{
+   if (row != other_.row)
+      throw 2;
+
+   Square_Matrix result(row);
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         result[i][j] = matrix[i][j] - other_[i][j];
+
+   return result;
+}
+
+Square_Matrix& Square_Matrix::operator-=(const Square_Matrix& other_)
+{
+   if (row != other_.row)
+      throw 2;
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         matrix[i][j] -= other_[i][j];
+
+   return *this;
+}
+
+double* Square_Matrix::operator[](const int index) const
+{
+   return matrix[index];
+}
+
+double* Square_Matrix::operator[](const int index)
+{
+   return matrix[index];
+}
+
+Square_Matrix& Square_Matrix::operator=(const Square_Matrix& other_)
+{
+   if (row != other_.row)
+   {
+      delete[] matrix;
+      row = other_.row;
+      column = other_.row;
+      matrix = new double* [row];
+      for (int i = 0; i < row; i++)
+         matrix[i] = new double[row];
+   }
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         matrix[i][j] = other_[i][j];
+
+   return *this;
+}
+
+Square_Matrix Square_Matrix::operator*(const Square_Matrix& other_) const
+{
+   if (row != other_.row)
+      throw 3;
+
+   Square_Matrix result(row);
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         for (int k = 0; k < row; k++)
+            result[i][j] += matrix[i][k] * other_[k][j];
+
+   return result;
+}
+
+Square_Matrix& Square_Matrix::operator*=(const Square_Matrix& other_)
+{
+   if (row != other_.row)
+      throw 3;
+
+   Square_Matrix result(row);
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         for (int k = 0; k < row; k++)
+            result[i][j] += matrix[i][k] * other_[k][j];
+
+   (*this) = result;
+
+   return *this;
+}
+
+Square_Matrix Square_Matrix::operator*(const double& number_) const
+{
+   Square_Matrix temp(*this);
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         temp[i][j] = number_ * temp[i][j];
+
+   return temp;
+}
+
+Square_Matrix& Square_Matrix::operator*=(const double& number_)
+{
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < row; j++)
+         matrix[i][j] = number_ * matrix[i][j];
+
+   return *this;
+}
+
+Square_Matrix Square_Matrix::operator^(int n_)
+{
+   if (n_ < 0) throw 4;//Заменить на деление
+
+   Square_Matrix temp(row);
+   for (int i = 0; i < row; i++)
+      temp.matrix[i][i] = 1;
+
+   for (int i = 1; i <= n_; i++)
+      temp = temp * (*this);
+
+   return temp;
+}
+
+bool Square_Matrix::operator==(const Square_Matrix& other_) const
+{
+   return (row == other_.row);
+}
+
+bool Square_Matrix::operator!=(const Square_Matrix& other_) const
+{
+   return (row != other_.row);
+}
+
+Square_Matrix Square_Matrix::Inverse_Matrix()
+{
+   Square_Matrix temp((*this).Transposition());
+
+   temp = temp * (1.0 / (*this).Determinant_Matrix());
+
+   return temp;
 }
 
 double Square_Matrix::Determinant_Matrix()
@@ -57,6 +215,35 @@ double Square_Matrix::Minor_Matrix(int i, int j)
    }
 
    return temp_matrix.Determinant_Matrix();
+}
+
+Square_Matrix Square_Matrix::Pow(int n_)
+{
+   if (n_ < 0) throw 4;//Заменить на деление
+
+   Square_Matrix temp(row);
+   for (int i = 0; i < row; i++)
+      temp.matrix[i][i] = 1;
+
+   for (int i = 1; i <= n_; i++)
+      temp = temp * (*this);
+
+   return temp;
+}
+
+Square_Matrix& Square_Matrix::Transposition()
+{
+   double temp;
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < i; j++)
+      {
+         temp = matrix[i][j];
+         matrix[i][j] = matrix[j][i];
+         matrix[j][i] = temp;
+      }
+
+   return *this;
 }
 
 

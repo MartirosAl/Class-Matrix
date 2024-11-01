@@ -20,9 +20,19 @@ public:
 
    Matrix operator+(const Matrix& other_) const;
 
+   Matrix& operator+=(const Matrix& other_);
+
+   Matrix operator-(const Matrix& other_) const;
+
+   Matrix& operator-=(const Matrix& other_);
+
    Matrix operator*(const Matrix& other_) const;
 
+   Matrix& operator*=(const Matrix& other_);
+
    Matrix operator*(const double& number_) const;
+
+   Matrix& operator*=(const double& number_);
 
    Matrix& operator=(const Matrix& other_);
 
@@ -46,7 +56,7 @@ public:
 
    Matrix& Print();
 
-   Matrix& Transposition();
+   virtual Matrix& Transposition();
 
 
 

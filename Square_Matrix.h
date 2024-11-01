@@ -7,7 +7,35 @@ public:
 
    Square_Matrix(const Square_Matrix& other_);
 
-   Matrix& Inverse_Matrix();
+   Square_Matrix operator+(const Square_Matrix& other_) const;
+
+   Square_Matrix& operator+=(const Square_Matrix& other_);
+
+   Square_Matrix operator-(const Square_Matrix& other_) const;
+
+   Square_Matrix& operator-=(const Square_Matrix& other_);
+
+   Square_Matrix& operator=(const Square_Matrix& other_);
+
+   Square_Matrix operator*(const Square_Matrix& other_) const;
+
+   Square_Matrix& operator*=(const Square_Matrix& other_);
+
+   Square_Matrix operator*(const double& number_) const;
+
+   Square_Matrix& operator*=(const double& number_);
+
+   Square_Matrix operator^(int n_);
+
+   bool operator==(const Square_Matrix& other_) const;
+
+   bool operator!=(const Square_Matrix& other_) const;
+
+   double* operator[](int index) const;
+
+   double* operator[](int index);
+
+   Square_Matrix Inverse_Matrix();
 
    double Determinant_Matrix();
 
@@ -15,6 +43,8 @@ public:
 
    double Algebraic_Complement_Matrix();
 
+   Square_Matrix Pow(int n_);
 
+   Square_Matrix& Transposition();
 };
 
