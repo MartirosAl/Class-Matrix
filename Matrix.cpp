@@ -181,7 +181,6 @@ double* Matrix::operator[](const int index)
 
 ostream& operator<<(ostream& stream, const Matrix& matrix)
 {
-   stream << endl;
    for (int i = 0; i < matrix.row; i++)
    {
       for (int j = 0; j < matrix.column; j++)

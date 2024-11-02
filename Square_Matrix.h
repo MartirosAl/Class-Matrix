@@ -50,5 +50,7 @@ public:
    Square_Matrix Pow(int n_);
 
    Square_Matrix& Transposition();
+
+   //friend Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, size_t& capasity_, Square_Matrix& matrix_);
 };
 

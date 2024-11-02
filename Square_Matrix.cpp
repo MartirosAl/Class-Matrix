@@ -252,7 +252,6 @@ Square_Matrix& Square_Matrix::Transposition()
 
 ostream& operator<<(ostream& stream, const Square_Matrix& matrix)
 {
-   stream << endl;
    for (int i = 0; i < matrix.row; i++)
    {
       for (int j = 0; j < matrix.row; j++)
