@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <math.h>
+using namespace std;
 
 class Matrix
 {
@@ -44,6 +45,10 @@ public:
 
    double* operator[](int index);
 
+   friend ostream& operator<<(ostream& stream, const Matrix& matrix);
+
+   friend istream& operator>>(istream& stream, Matrix& matrix);
+
    void Set_Element(int row_, int column_, double value_);
    
    double Get_Element(int row_, int column_) const;
@@ -57,6 +62,14 @@ public:
    Matrix& Print();
 
    virtual Matrix& Transposition();
+
+   Matrix Inverse_Matrix();
+
+   double Determinant_Matrix();
+
+   double Minor_Matrix(int i, int j);
+
+   Matrix Pow(int n_);
 
 
 

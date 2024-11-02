@@ -139,6 +139,9 @@ Matrix& Matrix::operator*=(const double& number_)
 
 Matrix& Matrix::operator=(const Matrix& other_)
 {
+   if (this == &other_)
+      return *this;
+
    if (row != other_.row || column != other_.column)
    {
       delete[] matrix;
@@ -174,6 +177,29 @@ double* Matrix::operator[](const int index) const
 double* Matrix::operator[](const int index)
 {
    return matrix[index];
+} 
+
+ostream& operator<<(ostream& stream, const Matrix& matrix)
+{
+   stream << endl;
+   for (int i = 0; i < matrix.row; i++)
+   {
+      for (int j = 0; j < matrix.column; j++)
+         stream << matrix[i][j] << ' ';
+      stream << endl;
+   }
+   stream << endl;
+   return stream;
+}
+
+istream& operator>>(istream& stream, Matrix& matrix)
+{
+   for (int i = 0; i < matrix.row; i++)
+   {
+      for (int j = 0; j < matrix.column; j++)
+         stream >> matrix[i][j];
+   }
+   return stream;
 }
 
 void Matrix::Set_Element(int row_, int column_, double value_)
@@ -238,4 +264,9 @@ Matrix& Matrix::Transposition()
          matrix[i][j] = temp[j][i];
 
    return *this;
+}
+
+Matrix Matrix::Inverse_Matrix()
+{
+   throw 5;
 }

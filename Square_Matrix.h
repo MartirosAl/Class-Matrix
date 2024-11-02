@@ -35,13 +35,17 @@ public:
 
    double* operator[](int index);
 
+   friend ostream& operator<<(ostream& stream, const Square_Matrix& matrix);
+
+   friend istream& operator>>(istream& stream, Square_Matrix& matrix);
+
    Square_Matrix Inverse_Matrix();
 
    double Determinant_Matrix();
 
    double Minor_Matrix(int i, int j);
 
-   double Algebraic_Complement_Matrix();
+  // double Algebraic_Complement_Matrix();
 
    Square_Matrix Pow(int n_);
 

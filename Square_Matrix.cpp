@@ -6,6 +6,7 @@ Square_Matrix::Square_Matrix(const Square_Matrix& other_) : Matrix(other_) { ; }
 
 Square_Matrix Square_Matrix::operator+(const Square_Matrix& other_) const
 {
+
    if (row != other_.row)
       throw 2;
 
@@ -66,6 +67,9 @@ double* Square_Matrix::operator[](const int index)
 
 Square_Matrix& Square_Matrix::operator=(const Square_Matrix& other_)
 {
+   if (this == &other_)
+      return *this;
+
    if (row != other_.row)
    {
       delete[] matrix;
@@ -246,8 +250,25 @@ Square_Matrix& Square_Matrix::Transposition()
    return *this;
 }
 
+ostream& operator<<(ostream& stream, const Square_Matrix& matrix)
+{
+   stream << endl;
+   for (int i = 0; i < matrix.row; i++)
+   {
+      for (int j = 0; j < matrix.row; j++)
+         stream << matrix[i][j] << ' ';
+      stream << endl;
+   }
+   stream << endl;
+   return stream;
+}
 
-
-
-
-
+istream& operator>>(istream& stream, Square_Matrix& matrix)
+{
+   for (int i = 0; i < matrix.row; i++)
+   {
+      for (int j = 0; j < matrix.row; j++)
+         stream >> matrix[i][j];
+   }
+   return stream;
+}

@@ -50,29 +50,61 @@ Vector Max_from_Diagonals(Square_Matrix& matrix_)
    return array;
 }
 
+int menu()
+{
+   cout << "1. Print matrix" << endl;
+   cout << "2. Input elements" << endl;
+   cout << "3. Create new matrix" << endl;
+   cout << "4. Arithmetic operations" << endl;
+   cout << "5. Comparison operations" << endl;
+   cout << "6. Transponitoin matrix" << endl;
+   cout << "7. Exponentiation matrix" << endl;
+   cout << "8. Inverse matrix" << endl;
+   cout << "9. Determinant matrix" << endl;
+   cout << endl;
+}
+//throw:
+//1 - Выход за пределы
+//2 - Не одинаковый размер матрицы
+//3 - Колонки не совпадают со строками другой матрицы или наоборот
+//4 - Неправильно введенные данные
+//5 - Неквадратная матрица
 int main()
 {
-   //Matrix a;
+   Matrix* array_matrix;
 
-   //try 
-   //{
-   //   a.Set_Element(0, 0, 5);
-   //}
-   //catch (int error)
-   //{
-   //   switch (error)
-   //   {
-   //   case 1:
-   //      printf("Outside the array");
-   //   }
-   //}
+   unsigned int choice;
+   try
+   {
+      while (1)
+      {
+         menu();
 
-   //a.Print();
-   //a.Transposition();
-   //a.Print();
+         cin >> choice;
+
+         switch (choice)
+         {
+         case 1:
+            ;
+         case 2:
+            ;
+         case 3:
+            ;
+         default:
+            break;
+         }
+      }
+   }
+   catch (int error)
+   {
+      ;
+   }
    int N = 3;
    Square_Matrix A(4), B, C, D;
-   A.Input_from_Console().Print();// B.Input_from_Console().Print(); // C.Input_from_console();
+   //A.Input_from_Console().Print();// B.Input_from_Console().Print(); // C.Input_from_console();
+
+   cin >> A;
+   cout << A;
 
    Vector a;
 

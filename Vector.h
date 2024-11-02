@@ -14,6 +14,8 @@ public:
 
    Vector(Vector& other_);
 
+   ~Vector();
+
    Vector operator+(const Vector& other_) const;
 
    Vector& operator=(const Vector& other_);

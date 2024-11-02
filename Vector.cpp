@@ -28,6 +28,11 @@ Vector::Vector(Vector& other_)
          elements[i] = other_.elements[i];
 }
 
+Vector::~Vector()
+{
+   delete[] elements;
+}
+
 Vector Vector::operator+(const Vector& other_) const
 {
    if (size != other_.size)
