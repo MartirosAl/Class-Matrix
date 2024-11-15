@@ -39,7 +39,7 @@ public:
 
    friend istream& operator>>(istream& stream, Square_Matrix& matrix);
 
-   Square_Matrix Inverse_Matrix();
+   virtual Square_Matrix Inverse_Matrix();
 
    double Determinant_Matrix();
 
@@ -47,7 +47,7 @@ public:
 
   // double Algebraic_Complement_Matrix();
 
-   Square_Matrix Pow(int n_);
+   virtual Square_Matrix Pow(int n_);
 
    Square_Matrix& Transposition();
 

@@ -189,7 +189,7 @@ int main()
                if (index4_1 < 0 || index4_1 > size_array_matrix)
                {
                   cout << "wrong index" << endl;
-                  system("pause");
+
                }
                else
                   break;
@@ -204,7 +204,7 @@ int main()
                if (index4_2 < 0 || index4_2 > size_array_matrix)
                {
                   cout << "wrong index" << endl;
-                  system("pause");
+
                }
                else
                   break;
@@ -220,7 +220,7 @@ int main()
                if (index4_3 < 0 || index4_3 > size_array_matrix)
                {
                   cout << "wrong index" << endl;
-                  system("pause");
+
                }
                else
                   break;
@@ -286,7 +286,6 @@ int main()
                if (index5_1 < 0 || index5_1 > size_array_matrix)
                {
                   cout << "wrong index" << endl;
-                  system("pause");
                }
                else
                   break;
@@ -301,7 +300,7 @@ int main()
                if (index5_2 < 0 || index5_2 > size_array_matrix)
                {
                   cout << "wrong index" << endl;
-                  system("pause");
+                  
                }
                else
                   break;
@@ -318,9 +317,64 @@ int main()
             }
             system("pause");
             system("cls");
+            continue;
 
+         case 6:
+            int index6;
+            for (size_t i = 0; i < size_array_matrix; i++)
+               cout << '#' << i << endl << array_matrix[i];
+            cout << "Choose matrix for transponition" << endl;
+            cin >> index6;
+            array_matrix[index6].Transposition();
+            cout << "Done" << endl;
+            cout << array_matrix[index6] << endl;
+            system("pause");
+            system("cls");
+            continue;
+
+         case 7:
+            int index7;
+            int degree7;
+            for (size_t i = 0; i < size_array_matrix; i++)
+               cout << '#' << i << endl << array_matrix[i];
+            cout << "Choose matrix for exp" << endl;
+            cin >> index7;
+            cout << "Choose degree" << endl;
+            cin >> degree7;
+
+            array_matrix[index7].Pow(degree7);
+
+            cout << array_matrix[index7] << endl;
+            cout << "Done" << endl;
+            system("pause");
+            system("cls");
+            continue;
+
+         case 8:
+            int index8;
+            for (size_t i = 0; i < size_array_matrix; i++)
+               cout << '#' << i << endl << array_matrix[i];
+            cout << "Choose matrix for inverse" << endl;
+            cin >> index8;
+            array_matrix[index8].Inverse_Matrix();
+            cout << "Done" << endl;
+            cout << array_matrix[index8] << endl;
+            system("pause");
+            system("cls");
+            continue;
+
+         case 9:
+            int index9;
+            for (size_t i = 0; i < size_array_matrix; i++)
+               cout << '#' << i << endl << array_matrix[i];
+            cout << "Choose matrix for determinante" << endl;
+            cin >> index9;
+            cout << array_matrix[index9].Determinant_Matrix() << endl;
+            system("pause");
+            system("cls");
+            continue;
          default:
-            break;
+            continue;
          }
       }
       catch (int error)
@@ -334,12 +388,16 @@ int main()
          switch (error)
          {
          case 1:
+            cout << "Sizes matrixes are not same" << endl;
             break;
          case 2:
+            cout << "Sizes matrixes are not same" << endl;
             break;
          case 3:
+            cout << "Wrong rows and columns in this matrix" << endl;
             break;
          case 4:
+            cout << "Wrong enter data" << endl;
             break;
          case 5:
             cout << "Not square matrix" << endl;
@@ -348,6 +406,7 @@ int main()
             cout << "Unknown error" << endl;
             return 1;
          }
+         system("pause");
       }
    }
    return 0;

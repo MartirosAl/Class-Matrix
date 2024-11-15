@@ -71,13 +71,13 @@ public:
 
    virtual Matrix& Transposition();
 
-   Matrix Inverse_Matrix();
+   virtual Matrix Inverse_Matrix();
 
-   double Determinant_Matrix();
+   virtual double Determinant_Matrix();
 
-   double Minor_Matrix(int i, int j);
+   virtual double Minor_Matrix(int i, int j);
 
-   Matrix Pow(int n_);
+   virtual Matrix Pow(int n_);
 
    //friend Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, size_t capasity_, Matrix& matrix_);
 
