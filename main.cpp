@@ -108,6 +108,8 @@ int main()
    cout << array_matrix[0];
    size_t capacity_array_matrix = 1;
    size_t size_array_matrix = 0;
+   char sign4 = '\0';
+   char sign5 = '\0';
 
    unsigned short int choice;
    while (1)
@@ -162,17 +164,15 @@ int main()
             system("pause");
             continue;
          case 4:
-            unsigned short int choice4;
             size_t index4_1;
             size_t index4_2;
             size_t index4_3;
-            char sign4 = '\0';
 
-            while (sign4 != '+' || sign4 != '-' || sign4 != '*')
+            while (1)
             {
-               cout << "Choice arithmetic operation (+, -, *)" << endl;
+               cout << "Choose arithmetic operation (+, -, *)" << endl;
                cin >> sign4;
-               if (sign4 != '+' || sign4 != '-' || sign4 != '*')
+               if (sign4 == '+' || sign4 == '-' || sign4 == '*')
                   break;
                cout << "wrong operation";
                system("pause");
@@ -182,20 +182,49 @@ int main()
             for (size_t i = 0; i < size_array_matrix; i++)
                cout << '#' << i << endl << array_matrix[i];
             cout << "? " << sign4 << " ? = ?" << endl;
-            cout << "Choice first matrix" << endl;
-            cin >> index4_1;
+            cout << "Choose first matrix" << endl;
+            while (1) 
+            {
+               cin >> index4_1;
+               if (index4_1 < 0 || index4_1 > size_array_matrix)
+               {
+                  cout << "wrong index" << endl;
+                  system("pause");
+               }
+               else
+                  break;
+            }
             system("cls");
             for (size_t i = 0; i < size_array_matrix; i++)
                cout << '#' << i << endl << array_matrix[i];
             cout << "#" << index4_1 << ' ' << sign4 << " ? = ?" << endl;
-            cout << "Choice second matrix" << endl;
-            cin >> index4_2;
+            cout << "Choose second matrix" << endl;
+            while (1) {
+               cin >> index4_2;
+               if (index4_2 < 0 || index4_2 > size_array_matrix)
+               {
+                  cout << "wrong index" << endl;
+                  system("pause");
+               }
+               else
+                  break;
+            }
             system("cls");
             for (size_t i = 0; i < size_array_matrix; i++)
                cout << '#' << i << endl << array_matrix[i];
-            cout << "#" << index4_1 << ' ' << sign4 << "#" << index4_2 << " = ? " << endl;
-            cout << "Choice third matrix" << endl;
-            cin >> index4_3;
+            cout << "#" << index4_1 << ' ' << sign4 << " #" << index4_2 << " = ? " << endl;
+            cout << "Choose third matrix" << endl;
+            while (1) 
+            {
+               cin >> index4_3;
+               if (index4_3 < 0 || index4_3 > size_array_matrix)
+               {
+                  cout << "wrong index" << endl;
+                  system("pause");
+               }
+               else
+                  break;
+            }
             system("cls");
             
             if (index4_1 == index4_3 || index4_2 == index4_3)
@@ -203,13 +232,13 @@ int main()
                switch (sign4)
                {
                case '+':
-                  array_matrix[index4_1 == index4_3 ? index4_1 : index4_2] += array_matrix[index4_1 != index4_3 ? index4_1 : index4_2];
+                  cout << (array_matrix[index4_1 == index4_3 ? index4_1 : index4_2] += array_matrix[index4_1 != index4_3 ? index4_1 : index4_2]);
                   break;
                case '-':
-                  array_matrix[index4_1 == index4_3 ? index4_1 : index4_2] -= array_matrix[index4_1 != index4_3 ? index4_1 : index4_2];
+                  cout << (array_matrix[index4_1 == index4_3 ? index4_1 : index4_2] -= array_matrix[index4_1 != index4_3 ? index4_1 : index4_2]);
                   break;
                case '*':
-                  array_matrix[index4_1 == index4_3 ? index4_1 : index4_2] *= array_matrix[index4_1 != index4_3 ? index4_1 : index4_2];
+                  cout << (array_matrix[index4_1 == index4_3 ? index4_1 : index4_2] *= array_matrix[index4_1 != index4_3 ? index4_1 : index4_2]);
                   break;
                }
             }
@@ -218,13 +247,13 @@ int main()
                switch (sign4)
                {
                case '+':
-                  array_matrix[index4_3] = array_matrix[index4_1] + array_matrix[index4_2]; 
+                  cout << (array_matrix[index4_3] = array_matrix[index4_1] + array_matrix[index4_2]);
                   break;
                case '-':
-                  array_matrix[index4_3] = array_matrix[index4_1] - array_matrix[index4_2];
+                  cout << (array_matrix[index4_3] = array_matrix[index4_1] - array_matrix[index4_2]);
                   break;
                case '*':
-                  array_matrix[index4_3] = array_matrix[index4_1] * array_matrix[index4_2];
+                  cout << (array_matrix[index4_3] = array_matrix[index4_1] * array_matrix[index4_2]);
                   break;
                }
             }
@@ -232,6 +261,63 @@ int main()
             system("pause");
             continue;
          case 5:
+            size_t index5_1;
+            size_t index5_2;
+
+            while (1)
+            {
+               cout << "Choose comparation operation (=, !=)" << endl;
+               cin >> sign5;
+               if (sign5 == '!')
+                  cin.ignore();
+               if (sign5 == '!' || sign5 == '=')
+                  break;
+               cout << "wrong operation";
+               system("pause");
+               system("cls");
+            }
+            system("cls");
+            for (size_t i = 0; i < size_array_matrix; i++)
+               cout << '#' << i << endl << array_matrix[i];
+            cout << "? " << sign5 << " ?" << endl;
+            cout << "Choose first matrix" << endl;
+            while (1) {
+               cin >> index5_1;
+               if (index5_1 < 0 || index5_1 > size_array_matrix)
+               {
+                  cout << "wrong index" << endl;
+                  system("pause");
+               }
+               else
+                  break;
+            }
+            system("cls");
+            for (size_t i = 0; i < size_array_matrix; i++)
+               cout << '#' << i << endl << array_matrix[i];
+            cout << "#" << index5_1 << ' ' << sign5 << " ?" << endl;
+            cout << "Choose second matrix" << endl;
+            while (1) {
+               cin >> index5_2;
+               if (index5_2 < 0 || index5_2 > size_array_matrix)
+               {
+                  cout << "wrong index" << endl;
+                  system("pause");
+               }
+               else
+                  break;
+            }
+            system("cls");
+
+            switch (sign5)
+            {
+            case '=':
+               cout << ((array_matrix[index5_1] == array_matrix[index5_2]) ? "True" : "False") << endl;
+               break;
+            default:
+               cout << ((array_matrix[index5_1] != array_matrix[index5_2]) ? "True" : "False") << endl;
+            }
+            system("pause");
+            system("cls");
 
          default:
             break;
@@ -248,30 +334,21 @@ int main()
          switch (error)
          {
          case 1:
-            ;
+            break;
          case 2:
-            ;
+            break;
          case 3:
-            ;
+            break;
          case 4:
-            ;
+            break;
          case 5:
-            ;
+            cout << "Not square matrix" << endl;
+            break;
+         default:
+            cout << "Unknown error" << endl;
+            return 1;
          }
       }
    }
-   int N = 3;
-   Square_Matrix A(4), B, C, D;
-   //A.Input_from_Console().Print();// B.Input_from_Console().Print(); // C.Input_from_console();
-
-   cin >> A;
-   cout << A;
-
-   Vector a;
-
-   a = Max_from_Diagonals(A);
-
-   a.Print_Vectors();
-   cout << "end" << endl;
    return 0;
 }

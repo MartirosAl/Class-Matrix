@@ -37,6 +37,14 @@ public:
 
    Matrix& operator=(const Matrix& other_);
 
+   Matrix& operator/(const Matrix& other_) const;
+
+   Matrix& operator/=(const Matrix& other_);
+
+   Matrix& operator/(const double& number_) const;
+
+   Matrix& operator/=(const double& number_) const;
+
    bool operator==(const Matrix& other_) const;
 
    bool operator!=(const Matrix& other_) const;

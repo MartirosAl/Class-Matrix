@@ -102,7 +102,7 @@ Matrix Matrix::operator*(const Matrix& other_) const
 
 Matrix& Matrix::operator*=(const Matrix& other_)
 {
-   if (row != other_.row || column != other_.column)
+   if (row != other_.column || column != other_.row)
       throw 3;
 
    Matrix result(row, other_.column);
@@ -158,6 +158,15 @@ Matrix& Matrix::operator=(const Matrix& other_)
 
    return *this;
 }
+//
+//Matrix& Matrix::operator/(const Matrix& other_) const
+//{
+//   if (row != other_.row || column != other_.row)
+//      throw 3;
+//
+//   
+//
+//}
 
 bool Matrix::operator==(const Matrix& other_) const
 {
@@ -266,6 +275,21 @@ Matrix& Matrix::Transposition()
 }
 
 Matrix Matrix::Inverse_Matrix()
+{
+   throw 5;
+}
+
+double Matrix::Determinant_Matrix()
+{
+   throw 5;
+}
+
+double Matrix::Minor_Matrix(int i, int j)
+{
+   throw 5;
+}
+
+Matrix Matrix::Pow(int n_)
 {
    throw 5;
 }
