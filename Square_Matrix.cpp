@@ -87,6 +87,30 @@ Square_Matrix& Square_Matrix::operator=(const Square_Matrix& other_)
    return *this;
 }
 
+Square_Matrix& Square_Matrix::operator=(const Matrix& other_)
+{
+   if (this == &other_)
+      return *this;
+   if (other_.Get_Row() != other_.Get_Column())
+      throw 5;
+
+   if (row != other_.Get_Row() || column != other_.Get_Column())
+   {
+      delete[] matrix;
+      row = other_.Get_Row();
+      column = other_.Get_Row();
+      matrix = new double* [row];
+      for (int i = 0; i < row; i++)
+         matrix[i] = new double[column];
+   }
+
+   for (int i = 0; i < row; i++)
+      for (int j = 0; j < column; j++)
+         matrix[i][j] = other_[i][j];
+
+   return *this;
+}
+
 Square_Matrix Square_Matrix::operator*(const Square_Matrix& other_) const
 {
    if (row != other_.row)

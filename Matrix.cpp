@@ -158,6 +158,9 @@ Matrix& Matrix::operator=(const Matrix& other_)
 
    return *this;
 }
+
+
+
 Matrix& Matrix::operator^(int n_)
 {
    throw 5;

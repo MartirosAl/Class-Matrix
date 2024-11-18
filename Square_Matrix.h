@@ -17,6 +17,8 @@ public:
 
    Square_Matrix& operator=(const Square_Matrix& other_);
 
+   Square_Matrix& operator=(const Matrix& other_);
+
    Square_Matrix operator*(const Square_Matrix& other_) const;
 
    Square_Matrix& operator*=(const Square_Matrix& other_);

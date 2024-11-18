@@ -104,6 +104,7 @@ void menu()
 int main()
 {
    Matrix* array_matrix = new Matrix[1];
+   Square_Matrix temp;
    size_t size_array_matrix = 0;
    char sign4 = '\0';
    char sign5 = '\0';
@@ -344,9 +345,11 @@ int main()
             cout << "Choose degree" << endl;
             cin >> degree7;
 
-            array_matrix[index7].Pow(degree7);
+            temp = array_matrix[index7];
+            temp = temp.Pow(degree7);
+            array_matrix[index7] = temp;
 
-            cout << array_matrix[index7] << endl;
+            cout << temp << endl;
             cout << "Done" << endl;
             system("pause");
             system("cls");
@@ -371,7 +374,8 @@ int main()
                cout << '#' << i << endl << array_matrix[i];
             cout << "Choose matrix for determinante" << endl;
             cin >> index9;
-            cout << array_matrix[index9].Determinant_Matrix() << endl;
+            temp = array_matrix[index9];
+            cout << temp.Determinant_Matrix() << endl;
             system("pause");
             system("cls");
             continue;
