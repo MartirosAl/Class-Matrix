@@ -37,6 +37,8 @@ public:
 
    Matrix& operator=(const Matrix& other_);
 
+   Matrix& operator^(int n_);
+
    Matrix& operator/(const Matrix& other_) const;
 
    Matrix& operator/=(const Matrix& other_);
@@ -71,13 +73,13 @@ public:
 
    virtual Matrix& Transposition();
 
-   virtual Matrix Inverse_Matrix();
+   Matrix Inverse_Matrix();
 
    virtual double Determinant_Matrix();
 
    virtual double Minor_Matrix(int i, int j);
 
-   virtual Matrix Pow(int n_);
+   Matrix Pow(int n_);
 
    //friend Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, size_t capasity_, Matrix& matrix_);
 

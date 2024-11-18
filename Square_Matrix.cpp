@@ -163,13 +163,13 @@ bool Square_Matrix::operator!=(const Square_Matrix& other_) const
    return (row != other_.row);
 }
 
-Square_Matrix Square_Matrix::Inverse_Matrix()
+Matrix Square_Matrix::Inverse_Matrix()
 {
    Square_Matrix temp((*this).Transposition());
 
    temp = temp * (1.0 / (*this).Determinant_Matrix());
 
-   return temp;
+   return (Matrix)temp;
 }
 
 double Square_Matrix::Determinant_Matrix()
@@ -221,7 +221,7 @@ double Square_Matrix::Minor_Matrix(int i, int j)
    return temp_matrix.Determinant_Matrix();
 }
 
-Square_Matrix Square_Matrix::Pow(int n_)
+Matrix Square_Matrix::Pow(int n_)
 {
    if (n_ < 0) throw 4;//Заменить на деление
 
@@ -232,7 +232,8 @@ Square_Matrix Square_Matrix::Pow(int n_)
    for (int i = 1; i <= n_; i++)
       temp = temp * (*this);
 
-   return temp;
+
+   return (Matrix)temp;
 }
 
 Square_Matrix& Square_Matrix::Transposition()
