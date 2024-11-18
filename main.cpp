@@ -274,7 +274,7 @@ int main()
             system("cls");
             for (size_t i = 0; i < size_array_matrix; i++)
                cout << '#' << i << endl << array_matrix[i];
-            cout << "? " << sign5 << " ?" << endl;
+            cout << "? " << ((sign5 == '!')? "!=" : "=") << " ?" << endl;
             cout << "Choose first matrix" << endl;
             while (1) {
                cin >> index5_1;
@@ -288,14 +288,13 @@ int main()
             system("cls");
             for (size_t i = 0; i < size_array_matrix; i++)
                cout << '#' << i << endl << array_matrix[i];
-            cout << "#" << index5_1 << ' ' << sign5 << " ?" << endl;
+            cout << "#" << index5_1 << ' ' << ((sign5 == '!') ? "!=" : "=") << " ?" << endl;
             cout << "Choose second matrix" << endl;
             while (1) {
                cin >> index5_2;
                if (index5_2 < 0 || index5_2 >= size_array_matrix)
                {
                   cout << "wrong index" << endl;
-                  
                }
                else
                   break;
@@ -319,7 +318,15 @@ int main()
             for (size_t i = 0; i < size_array_matrix; i++)
                cout << '#' << i << endl << array_matrix[i];
             cout << "Choose matrix for transponition" << endl;
-            cin >> index6;
+            while (1) {
+               cin >> index6;
+               if (index6 < 0 || index6 >= size_array_matrix)
+               {
+                  cout << "wrong index" << endl;
+               }
+               else
+                  break;
+            }
             array_matrix[index6].Transposition();
             cout << "Done" << endl;
             cout << array_matrix[index6] << endl;
@@ -375,11 +382,11 @@ int main()
       catch (int error)
       {
          //throw:
-         //1 - Ð’Ñ‹Ñ…Ð¾Ð´ Ð·Ð° Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‹
-         //2 - ÐÐµ Ð¾Ð´Ð¸Ð½Ð°ÐºÐ¾Ð²Ñ‹Ð¹ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹
-         //3 - ÐšÐ¾Ð»Ð¾Ð½ÐºÐ¸ Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÑŽÑ‚ ÑÐ¾ ÑÑ‚Ñ€Ð¾ÐºÐ°Ð¼Ð¸ Ð´Ñ€ÑƒÐ³Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ Ð¸Ð»Ð¸ Ð½Ð°Ð¾Ð±Ð¾Ñ€Ð¾Ñ‚
-         //4 - ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾ Ð²Ð²ÐµÐ´ÐµÐ½Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ
-         //5 - ÐÐµÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð½Ð°Ñ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð°
+         //1 - Âûõîä çà ïðåäåëû
+         //2 - Íå îäèíàêîâûé ðàçìåð ìàòðèöû
+         //3 - Êîëîíêè íå ñîâïàäàþò ñî ñòðîêàìè äðóãîé ìàòðèöû èëè íàîáîðîò
+         //4 - Íåïðàâèëüíî ââåäåííûå äàííûå
+         //5 - Íåêâàäðàòíàÿ ìàòðèöà
          switch (error)
          {
          case 1:
