@@ -361,7 +361,11 @@ int main()
                cout << '#' << i << endl << array_matrix[i];
             cout << "Choose matrix for inverse" << endl;
             cin >> index8;
-            array_matrix[index8].Inverse_Matrix();
+
+            temp = array_matrix[index8];
+            temp = temp.Inverse_Matrix();
+            array_matrix[index8] = temp;
+
             cout << "Done" << endl;
             cout << array_matrix[index8] << endl;
             system("pause");
