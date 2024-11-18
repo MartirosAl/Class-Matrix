@@ -383,7 +383,7 @@ int main()
          switch (error)
          {
          case 1:
-            cout << "Sizes matrixes are not same" << endl;
+            cout << "Out of order" << endl;
             break;
          case 2:
             cout << "Sizes matrixes are not same" << endl;
