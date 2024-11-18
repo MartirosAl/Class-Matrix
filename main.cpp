@@ -50,7 +50,7 @@ Vector Max_from_Diagonals(Square_Matrix& matrix_)
    return array;
 }
 
-Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, size_t& capasity_, Matrix& matrix_)
+Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, Matrix& matrix_)
 {
    Matrix* temp = new Matrix[size_];
    for (int i = 0; i < size_; i++)
@@ -69,7 +69,7 @@ Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, size_t& capasity
    return array_matrix_;
 }
 
-Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, size_t& capasity_, Square_Matrix& matrix_)
+Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, Square_Matrix& matrix_)
 {
    Matrix* temp = new Matrix[size_];
    for (int i = 0; i < size_; i++)
@@ -84,7 +84,6 @@ Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, size_t& capasity
    array_matrix_[size_] = matrix_;
 
    size_++;
-   capasity_++;
    return array_matrix_;
 }
 
@@ -105,8 +104,6 @@ void menu()
 int main()
 {
    Matrix* array_matrix = new Matrix[1];
-   cout << array_matrix[0];
-   size_t capacity_array_matrix = 1;
    size_t size_array_matrix = 0;
    char sign4 = '\0';
    char sign5 = '\0';
@@ -136,9 +133,7 @@ int main()
             unsigned short int index2;
             cout << "Enter number matrix: ";
             cin >> index2;
-            for (size_t i = 0; i < array_matrix[index2 - 1].Get_Row(); i++)
-               for (size_t j = 0; j < array_matrix[index2 - 1].Get_Column(); j++)
-                  array_matrix[index2 - 1].Input_from_Console();
+            array_matrix[index2 - 1].Input_from_Console();
             cout << "Done" << endl;
             system("pause");
             continue;
@@ -151,14 +146,14 @@ int main()
                Square_Matrix s_temp3(row3);
                cout << "Enter matrix: " << endl;
                cin >> s_temp3;
-               Add_Array_Matrix(array_matrix, size_array_matrix, capacity_array_matrix, s_temp3);
+               Add_Array_Matrix(array_matrix, size_array_matrix, s_temp3);
             }
             else
             {
                Matrix temp3(row3, column3);
                cout << "Enter matrix: " << endl;
                cin >> temp3;
-               Add_Array_Matrix(array_matrix, size_array_matrix , capacity_array_matrix, temp3);
+               Add_Array_Matrix(array_matrix, size_array_matrix , temp3);
             }
             cout << "Done" << endl;
             system("pause");
@@ -174,7 +169,7 @@ int main()
                cin >> sign4;
                if (sign4 == '+' || sign4 == '-' || sign4 == '*')
                   break;
-               cout << "wrong operation";
+               cout << "wrong operation" << endl;
                system("pause");
                system("cls");
             }
@@ -186,7 +181,7 @@ int main()
             while (1) 
             {
                cin >> index4_1;
-               if (index4_1 < 0 || index4_1 > size_array_matrix)
+               if (index4_1 < 0 || index4_1 >= size_array_matrix)
                {
                   cout << "wrong index" << endl;
 
@@ -201,7 +196,7 @@ int main()
             cout << "Choose second matrix" << endl;
             while (1) {
                cin >> index4_2;
-               if (index4_2 < 0 || index4_2 > size_array_matrix)
+               if (index4_2 < 0 || index4_2 >= size_array_matrix)
                {
                   cout << "wrong index" << endl;
 
@@ -217,7 +212,7 @@ int main()
             while (1) 
             {
                cin >> index4_3;
-               if (index4_3 < 0 || index4_3 > size_array_matrix)
+               if (index4_3 < 0 || index4_3 >= size_array_matrix)
                {
                   cout << "wrong index" << endl;
 
@@ -272,7 +267,7 @@ int main()
                   cin.ignore();
                if (sign5 == '!' || sign5 == '=')
                   break;
-               cout << "wrong operation";
+               cout << "wrong operation" << endl;
                system("pause");
                system("cls");
             }
@@ -283,7 +278,7 @@ int main()
             cout << "Choose first matrix" << endl;
             while (1) {
                cin >> index5_1;
-               if (index5_1 < 0 || index5_1 > size_array_matrix)
+               if (index5_1 < 0 || index5_1 >= size_array_matrix)
                {
                   cout << "wrong index" << endl;
                }
@@ -297,7 +292,7 @@ int main()
             cout << "Choose second matrix" << endl;
             while (1) {
                cin >> index5_2;
-               if (index5_2 < 0 || index5_2 > size_array_matrix)
+               if (index5_2 < 0 || index5_2 >= size_array_matrix)
                {
                   cout << "wrong index" << endl;
                   
