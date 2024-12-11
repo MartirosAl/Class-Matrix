@@ -18,38 +18,6 @@ double Min(Matrix<T> matrix_)
 }
 
 template <typename T>
-Vector Max_from_Diagonals(Square_Matrix<T>& matrix_)
-{
-   int size = matrix_.Get_Row() * 2 - 1;
-   Vector array(nullptr, (size_t)size);
-
-   int index = 0;
-
-   for (int i = matrix_.Get_Row() - 1; i >= 0; i--)
-   {
-      T diagonal1 = 0;
-      T diagonal2 = 0;
-      int temp = i;
-      
-      for (int j = 0; j < matrix_.Get_Row() - i; j++)
-      {
-         if (diagonal1 < matrix_[temp][j]) diagonal1 = matrix_[temp][j];
-         if (diagonal2 < matrix_[j][temp]) diagonal2 = matrix_[j][temp];
-
-         temp++;
-      }
-      
-      array[index] = diagonal1;
-      if (i != 0)
-         array[size - 1 - index] = diagonal2;
-      index++; 
-   }
-
-
-   return array;
-}
-
-template <typename T>
 Matrix<T>* Add_Array_Matrix(Matrix<T>*& array_matrix_, size_t& size_, Matrix<T>& matrix_)
 {
    Matrix<T>* temp = new Matrix<T>[size_];
@@ -69,24 +37,6 @@ Matrix<T>* Add_Array_Matrix(Matrix<T>*& array_matrix_, size_t& size_, Matrix<T>&
    return array_matrix_;
 }
 
-template <typename T>
-Matrix<T>* Add_Array_Matrix(Matrix<T>*& array_matrix_, size_t& size_, Square_Matrix<T>& matrix_)
-{
-   Matrix<T>* temp = new Matrix<T>[size_];
-   for (int i = 0; i < size_; i++)
-      temp[i] = array_matrix_[i];
-
-   delete[] array_matrix_;
-
-   array_matrix_ = new Matrix<T>[size_ + 1];
-   for (size_t i = 0; i < size_; i++)
-      array_matrix_[i] = temp[i];
-
-   array_matrix_[size_] = matrix_;
-
-   size_++;
-   return array_matrix_;
-}
 
 void menu()
 {
@@ -96,19 +46,18 @@ void menu()
    cout << "4. Arithmetic operations" << endl;
    cout << "5. Comparison operations" << endl;
    cout << "6. Transponitoin matrix" << endl;
-   cout << "7. Exponentiation matrix" << endl;
-   cout << "8. Inverse matrix" << endl;
-   cout << "9. Determinant matrix" << endl;
    cout << ">> ";
 }
+
 
 int main()
 {
    Matrix<double>* array_matrix = new Matrix<double>[1];
-   Square_Matrix<double> temp;
    size_t size_array_matrix = 0;
    char sign4 = '\0';
    char sign5 = '\0';
+
+   Matrix<double> temp3;
 
    unsigned short int choice;
    while (1)
@@ -143,20 +92,11 @@ int main()
             int row3, column3;
             cout << "Enter row and column: ";
             cin >> row3 >> column3;
-            if (row3 == column3)
-            {
-               Square_Matrix<double> s_temp3(row3);
-               cout << "Enter matrix: " << endl;
-               cin >> s_temp3;
-               Add_Array_Matrix(array_matrix, size_array_matrix, s_temp3);
-            }
-            else
-            {
-               Matrix<double> temp3(row3, column3);
-               cout << "Enter matrix: " << endl;
-               cin >> temp3;
-               Add_Array_Matrix(array_matrix, size_array_matrix , temp3);
-            }
+
+            cout << "Enter matrix: " << endl;
+            cin >> temp3;
+            Add_Array_Matrix(array_matrix, size_array_matrix , temp3);
+
             cout << "Done" << endl;
             system("pause");
             continue;
@@ -336,54 +276,6 @@ int main()
             system("cls");
             continue;
 
-         case 7:
-            int index7;
-            int degree7;
-            for (size_t i = 0; i < size_array_matrix; i++)
-               cout << '#' << i << endl << array_matrix[i];
-            cout << "Choose matrix for exp" << endl;
-            cin >> index7;
-            cout << "Choose degree" << endl;
-            cin >> degree7;
-
-            temp = array_matrix[index7];
-            temp = temp.Pow(degree7);
-            array_matrix[index7] = temp;
-
-            cout << array_matrix[index7] << endl;
-            cout << "Done" << endl;
-            system("pause");
-            system("cls");
-            continue;
-
-         case 8:
-            int index8;
-            for (size_t i = 0; i < size_array_matrix; i++)
-               cout << '#' << i << endl << array_matrix[i];
-            cout << "Choose matrix for inverse" << endl;
-            cin >> index8;
-
-            temp = array_matrix[index8];
-            temp = temp.Inverse_Matrix();
-            array_matrix[index8] = temp;
-
-            cout << "Done" << endl;
-            cout << array_matrix[index8] << endl;
-            system("pause");
-            system("cls");
-            continue;
-
-         case 9:
-            int index9;
-            for (size_t i = 0; i < size_array_matrix; i++)
-               cout << '#' << i << endl << array_matrix[i];
-            cout << "Choose matrix for determinante" << endl;
-            cin >> index9;
-            temp = array_matrix[index9];
-            cout << temp.Determinant_Matrix() << endl;
-            system("pause");
-            system("cls");
-            continue;
          default:
             continue;
          }
@@ -391,37 +283,6 @@ int main()
       catch (MatrixExсeption& exception)
       {
          exception.Print();
-         system("pause");
-      }
-      catch (int error)
-      {
-         //throw:
-         //1 - Выход за пределы
-         //2 - Не одинаковый размер матрицы
-         //3 - Колонки не совпадают со строками другой матрицы или наоборот
-         //4 - Неправильно введенные данные
-         //5 - Неквадратная матрица
-         switch (error)
-         {
-         case 1:
-            cout << "Out of order" << endl;
-            break;
-         case 2:
-            cout << "Sizes matrixes are not same" << endl;
-            break;
-         case 3:
-            cout << "Wrong rows and columns in this matrix" << endl;
-            break;
-         case 4:
-            cout << "Wrong enter data" << endl;
-            break;
-         case 5:
-            cout << "Not square matrix" << endl;
-            break;
-         default:
-            cout << "Unknown error" << endl;
-            return 1;
-         }
          system("pause");
       }
    }
