@@ -2,6 +2,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <math.h>
+#include "Matrix.h"
 #include "Square_Matrix.h"
 #include "Vector.h"
 using namespace std; 
@@ -48,6 +49,35 @@ Vector Max_from_Diagonals(Square_Matrix& matrix_)
 
 
    return array;
+}
+
+Matrix Smoothing(Matrix& matrix_)
+{
+   Matrix result(matrix_);
+   for (int i = 0; i < matrix_.Get_Row(); i++)
+   {
+      double temp1 = 0;
+      int tempn = 0;
+      for (int j = 0; j < matrix_.Get_Row(); j++)
+      {
+
+         for (int di = -1; di <= 1; di++)
+            for (int dj = -1; dj <= -1; dj++)
+            {
+               if (di == dj && dj == 0) continue;
+
+               if (i + di >= 0 && i + di < matrix_.Get_Row() && j + dj >= 0 && j + dj < matrix_.Get_Row())
+               {
+                  temp1 += matrix_[i + di][j + dj];
+                  tempn++;
+               }
+            }
+         
+         result[i][j] = temp1/tempn;
+      }
+   }
+
+   return result;
 }
 
 Matrix* Add_Array_Matrix(Matrix*& array_matrix_, size_t& size_, Matrix& matrix_)
@@ -386,6 +416,11 @@ int main()
          default:
             continue;
          }
+      }
+      catch (MatrixExñeption& exception)
+      {
+         exception.Print();
+         system("pause");
       }
       catch (int error)
       {

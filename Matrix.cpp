@@ -193,7 +193,7 @@ double* Matrix::operator[](const int index) const
 double* Matrix::operator[](const int index)
 {
    return matrix[index];
-} 
+}
 
 ostream& operator<<(ostream& stream, const Matrix& matrix)
 {
@@ -266,7 +266,7 @@ Matrix& Matrix::Print()
 Matrix& Matrix::Transposition()
 {
    Matrix temp(*this);
-   
+
    delete[] matrix;
    row = temp.column;
    column = temp.row;
@@ -297,6 +297,11 @@ double Matrix::Minor_Matrix(int i, int j)
 }
 
 Matrix Matrix::Pow(int n_)
+{
+   throw WrongNotSquare();
+}
+
+double Matrix::Algebraic_Complement_Matrix()
 {
    throw WrongNotSquare();
 }

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
+#include "Exñeption.h"
 
 class Matrix
 {
@@ -78,6 +79,8 @@ public:
    virtual double Determinant_Matrix();
 
    virtual double Minor_Matrix(int i, int j);
+
+   double Algebraic_Complement_Matrix();
 
    Matrix Pow(int n_);
 

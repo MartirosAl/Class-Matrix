@@ -47,7 +47,7 @@ public:
 
    double Minor_Matrix(int i, int j);
 
-  // double Algebraic_Complement_Matrix();
+   double Algebraic_Complement_Matrix();
 
    Matrix Pow(int n_);
 

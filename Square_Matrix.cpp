@@ -165,7 +165,7 @@ Square_Matrix& Square_Matrix::operator*=(const double& number_)
 
 Square_Matrix Square_Matrix::operator^(int n_)
 {
-   if (n_ < 0) throw WrongData();//Ð—Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð½Ð° Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ
+   if (n_ < 0) throw WrongData();//Çàìåíèòü íà äåëåíèå
 
    Square_Matrix temp(row);
    for (int i = 0; i < row; i++)
@@ -247,7 +247,7 @@ double Square_Matrix::Minor_Matrix(int i, int j)
 
 Matrix Square_Matrix::Pow(int n_)
 {
-   if (n_ < 0) throw WrongData();//Ð—Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð½Ð° Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ
+   if (n_ < 0) throw WrongData();//Çàìåíèòü íà äåëåíèå
 
    Square_Matrix temp(row);
    for (int i = 0; i < row; i++)
@@ -295,4 +295,18 @@ istream& operator>>(istream& stream, Square_Matrix& matrix)
          stream >> matrix[i][j];
    }
    return stream;
+}
+
+double Square_Matrix::Algebraic_Complement_Matrix()
+{
+   double result = 0;
+   for (int i = 0; i < row; i++)
+   {
+      for (int j = 0; j < row; j++)
+      {
+         result += pow(i + j, -1) * Minor_Matrix(i, j);
+      }
+   }
+
+   return result;
 }
