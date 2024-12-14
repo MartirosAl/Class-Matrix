@@ -37,7 +37,7 @@ Matrix::~Matrix()
 Matrix Matrix::operator+(const Matrix& other_) const
 {
    if (row != other_.row || column != other_.column)
-      throw 2;
+      throw SizeAreNotSame();
 
    Matrix result(row, column);
    for (int i = 0; i < row; i++)
@@ -51,7 +51,7 @@ Matrix Matrix::operator+(const Matrix& other_) const
 Matrix& Matrix::operator+=(const Matrix& other_)
 {
    if (row != other_.row || column != other_.column)
-      throw 2;
+      throw SizeAreNotSame();
 
    for (int i = 0; i < row; i++)
       for (int j = 0; j < column; j++)
@@ -63,7 +63,7 @@ Matrix& Matrix::operator+=(const Matrix& other_)
 Matrix Matrix::operator-(const Matrix& other_) const
 {
    if (row != other_.row || column != other_.column)
-      throw 2;
+      throw SizeAreNotSame();
 
    Matrix result(row, column);
    for (int i = 0; i < row; i++)
@@ -76,7 +76,7 @@ Matrix Matrix::operator-(const Matrix& other_) const
 Matrix& Matrix::operator-=(const Matrix& other_)
 {
    if (row != other_.row || column != other_.column)
-      throw 2;
+      throw SizeAreNotSame();
 
    for (int i = 0; i < row; i++)
       for (int j = 0; j < column; j++)
@@ -88,7 +88,7 @@ Matrix& Matrix::operator-=(const Matrix& other_)
 Matrix Matrix::operator*(const Matrix& other_) const
 {
    if (row != other_.column || column != other_.row)
-      throw 3;
+      throw WrongRowsColumns();
 
    Matrix result(row, other_.column);
 
@@ -103,7 +103,7 @@ Matrix Matrix::operator*(const Matrix& other_) const
 Matrix& Matrix::operator*=(const Matrix& other_)
 {
    if (row != other_.column || column != other_.row)
-      throw 3;
+      throw WrongRowsColumns();
 
    Matrix result(row, other_.column);
 
@@ -163,13 +163,13 @@ Matrix& Matrix::operator=(const Matrix& other_)
 
 Matrix& Matrix::operator^(int n_)
 {
-   throw 5;
+   throw WrongNotSquare();
 }
 //
 //Matrix& Matrix::operator/(const Matrix& other_) const
 //{
 //   if (row != other_.row || column != other_.row)
-//      throw 3;
+//      throw WrongRowsColumns();
 //
 //   
 //
@@ -220,14 +220,14 @@ istream& operator>>(istream& stream, Matrix& matrix)
 void Matrix::Set_Element(int row_, int column_, double value_)
 {
    if ((row_ < 0 || row_ >= row) || (column_ < 0 || column_ >= column))
-      throw 1;
+      throw OutOfRange();
    matrix[row_][column_] = value_;
 }
 
 double Matrix::Get_Element(int row_, int column_) const
 {
    if ((row_ < 0 || row_ >= row) || (column_ < 0 || column_ >= column))
-      throw 1;
+      throw OutOfRange();
    return matrix[row_][column_];
 }
 
@@ -245,7 +245,7 @@ Matrix& Matrix::Input_from_Console()
 {
    for (int i = 0; i < row; i++)
       for (int j = 0; j < column; j++)
-         if (!scanf_s("%lf", &matrix[i][j])) throw 4;
+         if (!scanf_s("%lf", &matrix[i][j])) throw WrongData();
 
    return *this;
 }
@@ -283,20 +283,20 @@ Matrix& Matrix::Transposition()
 
 Matrix Matrix::Inverse_Matrix()
 {
-   throw 5;
+   throw WrongNotSquare();
 }
 
 double Matrix::Determinant_Matrix()
 {
-   throw 5;
+   throw WrongNotSquare();
 }
 
 double Matrix::Minor_Matrix(int i, int j)
 {
-   throw 5;
+   throw WrongNotSquare();
 }
 
 Matrix Matrix::Pow(int n_)
 {
-   throw 5;
+   throw WrongNotSquare();
 }
