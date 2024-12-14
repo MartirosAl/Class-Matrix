@@ -8,7 +8,7 @@ Square_Matrix Square_Matrix::operator+(const Square_Matrix& other_) const
 {
 
    if (row != other_.row)
-      throw 2;
+      throw SizeAreNotSame();
 
    Square_Matrix result(row);
    for (int i = 0; i < row; i++)
@@ -21,7 +21,7 @@ Square_Matrix Square_Matrix::operator+(const Square_Matrix& other_) const
 Square_Matrix& Square_Matrix::operator+=(const Square_Matrix& other_)
 {
    if (row != other_.row)
-      throw 2;
+      throw SizeAreNotSame();
 
    for (int i = 0; i < row; i++)
       for (int j = 0; j < row; j++)
@@ -33,7 +33,7 @@ Square_Matrix& Square_Matrix::operator+=(const Square_Matrix& other_)
 Square_Matrix Square_Matrix::operator-(const Square_Matrix& other_) const
 {
    if (row != other_.row)
-      throw 2;
+      throw SizeAreNotSame();
 
    Square_Matrix result(row);
    for (int i = 0; i < row; i++)
@@ -46,7 +46,7 @@ Square_Matrix Square_Matrix::operator-(const Square_Matrix& other_) const
 Square_Matrix& Square_Matrix::operator-=(const Square_Matrix& other_)
 {
    if (row != other_.row)
-      throw 2;
+      throw SizeAreNotSame();
 
    for (int i = 0; i < row; i++)
       for (int j = 0; j < row; j++)
@@ -114,7 +114,7 @@ Square_Matrix& Square_Matrix::operator=(const Matrix& other_)
 Square_Matrix Square_Matrix::operator*(const Square_Matrix& other_) const
 {
    if (row != other_.row)
-      throw 3;
+      throw WrongRowsColumns();
 
    Square_Matrix result(row);
 
@@ -129,7 +129,7 @@ Square_Matrix Square_Matrix::operator*(const Square_Matrix& other_) const
 Square_Matrix& Square_Matrix::operator*=(const Square_Matrix& other_)
 {
    if (row != other_.row)
-      throw 3;
+      throw WrongRowsColumns();
 
    Square_Matrix result(row);
 
@@ -165,7 +165,7 @@ Square_Matrix& Square_Matrix::operator*=(const double& number_)
 
 Square_Matrix Square_Matrix::operator^(int n_)
 {
-   if (n_ < 0) throw 4;//Çàìåíèòü íà äåëåíèå
+   if (n_ < 0) throw WrongData();//Ð—Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð½Ð° Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ
 
    Square_Matrix temp(row);
    for (int i = 0; i < row; i++)
@@ -247,7 +247,7 @@ double Square_Matrix::Minor_Matrix(int i, int j)
 
 Matrix Square_Matrix::Pow(int n_)
 {
-   if (n_ < 0) throw 4;//Çàìåíèòü íà äåëåíèå
+   if (n_ < 0) throw WrongData();//Ð—Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð½Ð° Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ
 
    Square_Matrix temp(row);
    for (int i = 0; i < row; i++)
